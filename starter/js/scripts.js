@@ -74,11 +74,14 @@ let projectsData = null;
 
 // Fetch aboutMeData.json
 fetch('data/aboutMeData.json')
-	.then(response => response.json())
-	.then(data => {
-		aboutMeData = data;
-		// Populate About Me section
-		const aboutMeDiv = document.getElementById('aboutMe');
+        .then(response => {
+                if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+                return response.json();
+        })
+        .then(data => {
+                aboutMeData = data;
+                // Populate About Me section
+                const aboutMeDiv = document.getElementById('aboutMe');
 		if (aboutMeDiv && aboutMeData) {
 			// Create paragraph for about me text
 			const p = document.createElement('p');
@@ -103,9 +106,12 @@ fetch('data/aboutMeData.json')
 
 // Fetch projectsData.json
 fetch('data/projectsData.json')
-	.then(response => response.json())
-	.then(data => {
-		projectsData = data;
+        .then(response => {
+                if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+                return response.json();
+        })
+        .then(data => {
+                projectsData = data;
 
 		// --- Populate Project Cards ---
 		const projectList = document.getElementById('projectList');
